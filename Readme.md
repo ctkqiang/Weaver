@@ -38,6 +38,12 @@ Weaver/
 
 可通过 `pip install -r requirements.txt` 安装依赖。
 
+## 激活虚拟环境
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+```
+
 ## 使用说明
 1. 克隆项目并进入目录
 2. 运行 `python main.py` 启动程序
