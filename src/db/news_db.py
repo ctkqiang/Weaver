@@ -28,13 +28,17 @@ class NewsDB:
         try:
             print("✅ 正在写入数据库:", self.conn.execute("PRAGMA database_list;").fetchall())
             self.conn.execute(
-                "INSERT INTO news (title, url, date, source, content) VALUES (?, ?, ?, ?, ?)",
+                """
+                INSERT OR IGNORE INTO news (title, url, date, source, content)
+                VALUES (?, ?, ?, ?, ?)
+                """,
                 (news.title, news.url, news.date, news.source, news.content)
             )
-            self.conn.commit()  # 这个超级关键！💥
-            print(f"✅ 插入成功: {news.title}")
-        except sqlite3.IntegrityError as e:
-            pass
+            self.conn.commit()
+            print(f"✅ 插入尝试完成: {news.title}")
+        except Exception as e:
+            print("❌ 插入失败:", e)
+
 
     def insert_batch(self, news_list: List[News]):
         for news in news_list:
