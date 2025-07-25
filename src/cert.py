@@ -58,9 +58,3 @@ class Cert:
                 return
 
         return news_list
-
-
-    
-
-x = Cert()
-x.scrape()

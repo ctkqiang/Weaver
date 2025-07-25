@@ -40,7 +40,7 @@ class NewsDB:
         for news in news_list:
             self.insert_news(news)
 
-    def fetch_all(self) -> List[News]:
+    def fetch_all_news(self) -> List[News]:
         cursor = self.conn.execute("SELECT title, url, date, source, content FROM news")
         rows = cursor.fetchall()
         return [News(*row) for row in rows]
